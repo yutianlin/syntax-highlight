@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
-    "start": "tsc-watch --onSuccess \"node ./dist/index.js\""
+    "start_server": "tsc-watch --onSuccess \"node ./dist/index.js\"",
+    "start_elastic_search": "/usr/local/var/homebrew/linked/elasticsearch-full/bin/elasticsearch"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/yutianlin/syntax-highlight#readme",
   "dependencies": {
+    "elasticsearch": "^16.7.2",
     "express": "^4.17.1"
   },
   "devDependencies": {

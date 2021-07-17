@@ -1,3 +1,5 @@
+import ElasticSearchService from "./ElasticSearchService";
+
 // important configuration files to load
 const path = require("path");
 //require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
@@ -7,6 +9,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const port = 3000;
+const elasticSearchService = new ElasticSearchService;
 
 app.use(bodyParser.json());
 app.use(
@@ -19,6 +22,10 @@ app.use(express.static(path.join(__dirname, "..", "..", "client", "build")));
 
 app.get("/", (request: any, response: any) => {
   response.json("Hello World");
+});
+
+app.get("/ping/elastic_search", async (request: any, response: any) => {
+  response.json(await elasticSearchService.ping());
 });
 
 var server = app.listen(port, "localhost", () => {

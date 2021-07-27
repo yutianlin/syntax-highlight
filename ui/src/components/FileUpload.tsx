@@ -1,6 +1,16 @@
+
+import { SyntheticEvent, useState } from 'react'
 import { Box, Text, Flex, Button, Input} from '@chakra-ui/react'
+import InstructionsModal from './InstructionsModal'
+
 
 function FileUpload() {
+    const [isFileTypeModalOpen, setIsFileTypeModalOpen] = useState<boolean>(false)
+
+    const handleFileUpload = async (element: HTMLInputElement) => {
+        console.log(element)
+    }
+
     return (
         <Box
             width="50%"
@@ -10,11 +20,22 @@ function FileUpload() {
         >
             <Flex direction="column" alignItems="center" mb="5">
                 <Text fontSize="2xl" mb="4">Upload a document</Text>
-                <Button size="sm" colorScheme="green">Accepted File Types</Button>
+                <Button 
+                    size="sm" 
+                    colorScheme="green"
+                    onClick={() => setIsFileTypeModalOpen(true)}>Instructions</Button>
                 <Box mt="10" ml="25">
-                    <Input type="file" variant="unstyled"></Input>
+                    <Input 
+                    type="file" 
+                    variant="unstyled"
+                    onChange={(e: SyntheticEvent) => handleFileUpload(e.currentTarget as HTMLInputElement)}
+                    />
                 </Box>
             </Flex>
+            <InstructionsModal
+                isOpen = {isFileTypeModalOpen}
+                onClose={() => setIsFileTypeModalOpen(false)}
+            />
         </Box>
     )
 }

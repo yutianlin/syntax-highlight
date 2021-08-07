@@ -21,8 +21,11 @@
   },
   "homepage": "https://github.com/yutianlin/syntax-highlight#readme",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "elasticsearch": "^16.7.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "joi": "^17.4.1",
+    "prettier": "^2.3.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

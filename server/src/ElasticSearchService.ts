@@ -14,11 +14,11 @@ export default class ElasticSearchService {
         return this.elasticClient.ping({requestTimeout: 30000});
     }
 
-    public initIndex(indexName: string) {
-        return this.elasticClient.indices.create({
-            index: indexName
-        });
-    }
+    // public initIndex(indexName: string) {
+    //     return this.elasticClient.indices.create({
+    //         index: indexName
+    //     });
+    // }
 
     public indexExists(indexName: string) {
         return this.elasticClient.indices.exists({
@@ -26,43 +26,38 @@ export default class ElasticSearchService {
         });
     }
 
-    public initMapping(indexName: string, docType: string, payload: JSON) {
-        return this.elasticClient.indices.putMapping({
-            index: indexName,
-            type: docType,
-            body: payload
-        });
-    }
+    // public initMapping(indexName: string, payload: JSON) {
+    //     return this.elasticClient.indices.putMapping({
+    //         index: indexName,
+    //         body: payload
+    //     });
+    // }
 
-    public addDocument(indexName: string, docType: string, payload: JSON) {
+    public addDocument(indexName: string, payload: JSON) {
         return this.elasticClient.index({
             index: indexName,
-            type: docType,
             body: payload
         });
     }
 
-    public updateDocument(indexName: string, id: string, docType: string, payload: JSON) {
+    public updateDocument(indexName: string, id: string, payload: JSON) {
         return this.elasticClient.update({
             index: indexName,
-            type: docType,
             id: id,
             body: payload
         });
     }
 
-    public search(indexName: string, docType: string, payload: JSON) {
-        this.elasticClient.search({
+    public search(indexName: string, payload: JSON) {
+        return this.elasticClient.search({
             index: indexName,
-            type: docType,
-            body: payload
+            body: { query: payload }
         });
     }
 
-    public deleteDocument(indexName: string, id: string, docType: string) {
+    public deleteDocument(indexName: string, id: string) {
         this.elasticClient.delete({
             index: indexName,
-            type: docType,
             id: id
         });
     }

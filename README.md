@@ -7,8 +7,6 @@
 1. syntax-highlight/server\$ `yarn clean`
 
 ## To Setup Project on Mac
+1. syntax-highlight/server\$ `cp .env.example .env`
 1. `brew install yarn`
-1. `brew tap elastic/tap`
-1. `brew install elastic/tap/elasticsearch-full`
-1. `brew install node`
-1. `brew install typescript`
+1. `yarn install`
